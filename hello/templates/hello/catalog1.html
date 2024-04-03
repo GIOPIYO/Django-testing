@@ -1,0 +1,37 @@
+{% extends "hello/layout.html" %}
+{% block title %}
+Catalog1
+{% endblock %}
+{% block content %}
+<main>
+    <section class="product-list">
+        <div class="product" onclick="viewProduct('Tractor', 'A powerful and versatile tractor suitable for various farm tasks such as plowing, planting, and towing.', 100000)">
+            <h2>Tractor</h2>
+            <p>Ksh 100000 per day</p>
+            <button onclick="addToCart('Tractor', 100000)">Add to Cart</button>
+        </div>
+        <!-- Add more product listings here -->
+        <div class="product" onclick="viewProduct('Combine Harvester', 'An advanced combine harvester designed to efficiently harvest crops like wheat, corn, and soybeans. Equipped with cutting-edge technology for optimal grain yield and minimal crop loss.', 25000)">
+            <h2>Combine Harvester</h2>
+            <p>Ksh 25000 per day</p>
+            <button onclick="addToCart('Combine Harvester', 25000)">Add to Cart</button>
+        </div>
+        <div class="product" onclick="viewProduct('Seeder', 'A precision seeder ideal for planting seeds with accuracy and uniformity. Features adjustable seed rates and row spacing to accommodate different crop types and planting conditions.', 20000)">
+            <h2>Seeder</h2>
+            <p>Ksh 20000 per day</p>
+            <button onclick="addToCart('Seeder', 20000)">Add to Cart</button>
+        </div>
+        <div class="product" onclick="viewProduct('Sprayer', 'A high-performance sprayer for applying fertilizers, herbicides, and pesticides to crops. Equipped with precision spraying technology and adjustable boom widths for efficient and targeted application.', 7000)">
+            <h2>Sprayer</h2>
+            <p>Ksh 7000 per day</p>
+            <button onclick="addToCart('Sprayer', 7000)">Add to Cart</button>
+        </div>
+        <div class="product" onclick="viewProduct('Plow', 'A heavy-duty plow for breaking up and turning over soil in preparation for planting. Designed to handle tough soil conditions and provide consistent depth and furrow shape', 20000)">
+            <h2>Plow</h2>
+            <p>Ksh 20000 per day</p>
+            <button onclick="addToCart('Plow', 20000)">Add to Cart</button>
+        </div>
+    </section>
+    <p>Go to page<a href="{% url 'catalog' %}">1</a><a href="{% url 'catalog1' %}"> ,2</a></p>
+</main>
+{% endblock %}

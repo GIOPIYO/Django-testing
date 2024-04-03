@@ -1,0 +1,15 @@
+{% extends "hello/layout.html" %}
+{% block title %}
+Search
+{% endblock %}
+{% block content %}
+<main>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for equipment...">
+        <button onclick="searchEquipment()">Search</button>
+    </div>
+    <section id="equipment-list" class="equipment-list">
+        <!-- Equipment will be displayed here -->
+    </section>
+</main>
+{% endblock %}
