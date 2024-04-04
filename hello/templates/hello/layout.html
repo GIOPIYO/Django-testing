@@ -7,6 +7,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'hello/style.css' %}"/>
 </head>
 <header>
+    <div class="container">
+        <div class="co-name">
+            {% load static %}
+            <img src="{% static 'hello/images/logo.png' %}" alt="CO logo" class="logo">
+            <h1>DIGI FARM</h1>
+        </div>
+    </div>
     <div class="navbar">
         <a href="{% url 'home' %}" class="navbar-brand">Home</a>  
         <a href="{% url 'catalog' %}" class="navbar-item">Catalog</a>
