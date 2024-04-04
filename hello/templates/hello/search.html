@@ -4,12 +4,23 @@ Search
 {% endblock %}
 {% block content %}
 <main>
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search for equipment...">
-        <button onclick="searchEquipment()">Search</button>
-    </div>
     <section id="equipment-list" class="equipment-list">
         <!-- Equipment will be displayed here -->
+        {% if products %}
+        <ul>
+            {% for FarmingEquipment in products %}
+                <li>
+                    <h2>{{ FarmingEquipment.name }}</h2>
+                    <img src="{{ FarmingEquipment.image.url }}" alt="{{ FarmingEquipment.name }}">
+                    <p>{{ FarmingEquipment.description }}</p>
+                    <p>Price: {{ FarmingEquipment.price }}</p>
+                    <button {% if user.is_authenticated %}onclick="addToCart('{{ FarmingEquipment.name }}', {{ FarmingEquipment.price }})"{% else %}disabled{% endif %}>Add to Cart</button>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
     </section>
 </main>
 {% endblock %}
