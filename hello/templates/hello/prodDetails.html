@@ -5,5 +5,17 @@ Product Details
 {% block content %}
 <body>
     <!-- Your HTML content here -->
+    <main>
+        <section class="product-details">
+          <h2>{{ FarmingEquipment.name }}</h2>
+            {% load static %} 
+            <img src="{% static 'hello/images/' + FarmingEquipment.image %}" alt="{{ FarmingEquipment.name }}">
+          
+            <p>Ksh {{ FarmingEquipment.price }} per day</p>
+            
+            <p>{{ FarmingEquipment.description }}</p>
+            <button {% if user.is_authenticated %}onclick="addToCart('{{ FarmingEquipment.name }}', {{ FarmingEquipment.price }})"{% else %}disabled{% endif %}>Add to Cart</button>
+        </section>
+    </main>
 </body>
 {% endblock %}
