@@ -1,0 +1,40 @@
+{% extends "hello/layout.html" %}
+{% block title %}
+Cart
+{% endblock %}
+{% block content %}
+<main>
+    <h1>Your Cart</h1>
+
+    {% if request.session.cart %}
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in request.session.cart %}
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>Ksh {{ item.price }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <p><b>Total Price: Ksh {{ total_price }}</b></p>
+  
+      <a href="{% url 'checkout' %}">Checkout</a>
+
+      <!-- Link/button to empty the cart -->
+      <a href="{% url 'empty_cart' %}">Empty Cart</a>
+  
+    {% else %}
+      <p>Your cart is currently empty.</p>
+    {% endif %}
+</main>
+{% endblock %}

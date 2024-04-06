@@ -11,15 +11,17 @@ Catalog
                 <h2>{{ FarmingEquipment.name }}</h2>
                 </a>        
                 {% load static %} 
-                <img src="{% static 'hello/images/' %}{{ FarmingEquipment.image.url }}" alt="{{ FarmingEquipment.name }}">                
+                <img src="{{ FarmingEquipment.image.url }}" alt="{{ FarmingEquipment.name }}">               
           <p>Ksh {{ FarmingEquipment.price }} per day</p>
           
           <p>{{ FarmingEquipment.description }}</p>
         
-          <button {% if user.is_authenticated %}onclick="addToCart('{{ FarmingEquipment.name }}', {{ FarmingEquipment.price }})"{% else %}disabled{% endif %}>Add to Cart</button>
-        </div>
+          <form action="{% url 'add_to_cart' FarmingEquipment.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ FarmingEquipment.id }}">
+            <button type="submit">Add to Cart</button>
+        </form> 
         {% endfor %}
-        
     </section>
     <p>Go to page<a href="{% url 'catalog' %}">1</a><a href="{% url 'catalog1' %}"> ,2</a></p>
 </main>

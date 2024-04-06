@@ -14,7 +14,11 @@ Search
                     <img src="{{ FarmingEquipment.image.url }}" alt="{{ FarmingEquipment.name }}">
                     <p>{{ FarmingEquipment.description }}</p>
                     <p>Price: {{ FarmingEquipment.price }}</p>
-                    <button {% if user.is_authenticated %}onclick="addToCart('{{ FarmingEquipment.name }}', {{ FarmingEquipment.price }})"{% else %}disabled{% endif %}>Add to Cart</button>
+                    <form action="{% url 'add_to_cart' FarmingEquipment.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ FarmingEquipment.id }}">
+                        <button type="submit">Add to Cart</button>
+                    </form>
                 </li>
             {% endfor %}
         </ul>

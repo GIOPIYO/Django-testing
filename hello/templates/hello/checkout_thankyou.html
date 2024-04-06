@@ -1,0 +1,15 @@
+{% extends "hello/layout.html" %}
+{% block title %}
+Cart
+{% endblock %}
+{% block content %}
+<main>
+    <div>
+        <h1>Thank You for Your Order!</h1>
+        <p>Your order has been successfully processed.</p>
+        <p>A confirmation email has been sent to your email address.</p>
+        <!-- Add any additional information or messages here -->
+        <p><a href="{% url 'cart_summary' %}">Return to Cart Summary</a></p>
+    </div>
+</main>
+{% endblock %}

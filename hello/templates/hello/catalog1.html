@@ -5,21 +5,24 @@ Catalog1
 {% block content %}
 <main>
     <section class="product-list">
-        {% for Item in remaining_products %}
+        {% for FarmingEquipment in remaining_products %}
         <div class="product">
-            <a href="{% url 'prodDetails' Item.name %}">
-          <h2>{{ Item.name }}</h2>
-            </a>
-          {% load static %} 
-          <img src="{% static 'hello/images/' + Item.image %}" alt="{{ Item.name }}">
+          <a href="{% url 'prodDetails' FarmingEquipment.name %}">
+              <h2>{{ FarmingEquipment.name }}</h2>
+              </a>        
+              {% load static %} 
+              <img src="{{ FarmingEquipment.image.url }}" alt="{{ FarmingEquipment.name }}">               
+        <p>Ksh {{ FarmingEquipment.price }} per day</p>
         
-          <p>Ksh {{ FarmingEquipment.price }} per day</p>
-          
-          <p>{{ Item.description }}</p>
-        
-          <button {% if user.is_authenticated %}onclick="addToCart('{{ Item.name }}', {{ Item.price }})"{% else %}disabled{% endif %}>Add to Cart</button>
-        </div>
-        {% endfor %}
+        <p>{{ FarmingEquipment.description }}</p>
+      
+        <form action="{% url 'add_to_cart' FarmingEquipment.id %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value="{{ FarmingEquipment.id }}">
+          <button type="submit">Add to Cart</button>
+      </form>
+      </div>
+      {% endfor %}
     </section>
     <p>Go to page<a href="{% url 'catalog' %}">1</a><a href="{% url 'catalog1' %}"> ,2</a></p>
 </main>
