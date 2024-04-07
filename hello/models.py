@@ -1,5 +1,5 @@
 from django.db import models
-import uuid
+from django.contrib.auth.models import User
 
 # Create your models here.
 class FarmingEquipment(models.Model):
@@ -11,4 +11,11 @@ class FarmingEquipment(models.Model):
   def __str__(self):
     return self.name
 
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(FarmingEquipment, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    date_added = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.quantity} of {self.product.name} in cart"
